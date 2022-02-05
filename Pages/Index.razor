@@ -22,9 +22,11 @@
 
 @code {
   private bool Show = false;
+  private bool Value = false;
 
-  void HideAlert()
+  void HideAlert(CustomEventArgs Args)
   {
     Show = false;
+    Value = Args.GetDetail<bool>(); // test dynamic generic types for detail values
   }
 }
