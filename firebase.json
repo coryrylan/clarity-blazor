@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "site": "cds-blazor",
+    "public": "dist/wwwroot",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/obj/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

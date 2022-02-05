@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>clarity-blazor</title>
+  <base href="/" />
+  <link rel="stylesheet" href="https://unpkg.com/modern-normalize@1.1.0/modern-normalize.css">
+  <link rel="stylesheet" href="https://unpkg.com/@cds/core@6.0.0-next.3/global.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@cds/core@6.0.0-next.3/styles/theme.dark.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@cds/city@1.1.0/css/bundles/default.min.css">
+  <link href="css/app.css" rel="stylesheet" />
+</head>
+
+<body cds-text="body" cds-theme="dark">
+  <div id="app">
+    <div id="blazor-loading-ui" cds-text="section">Loading...</div>
+  </div>
+
+  <script src="_framework/blazor.webassembly.js"></script>
+  <script type="module" src="js/event-handlers.js"></script>
+  <script type="module" src="js/index.js"></script>
+</body>
+
+</html>

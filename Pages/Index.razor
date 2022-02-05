@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<PageTitle>Clarity + Blazor Starter</PageTitle>
+
+<div cds-layout="vertical gap:md p:lg p-y:xl container:sm container:center">
+  <h1 cds-text="heading">Clarity + Blazor Starter</h1>
+
+  <div cds-layout="horizontal gap:sm">
+    <a cds-text="link" href="https://github.com/coryrylan/clarity-blazor">Demo Repo</a>
+    <a cds-text="link" href="https://clarity.design/storybook/core">Clarity Docs</a>
+    <a cds-text="link" href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor">Blazor Docs</a>
+  </div>
+
+  <cds-button @onclick="@(e => Show = !Show)" action="outline" status="primary">Hello There</cds-button>
+
+  <cds-alert-group status="info" hidden="@(!Show)">
+    <cds-alert closable @oncloseChange="@HideAlert">
+      General Kenobi, you are a bold one...
+    </cds-alert>
+  </cds-alert-group>
+</div>
+
+@code {
+  private bool Show = false;
+
+  void HideAlert()
+  {
+    Show = false;
+  }
+}
