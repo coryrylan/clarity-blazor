@@ -2,44 +2,33 @@
 /**
  * @experimental
  * 
- * wwwroot/BlazorApp.lib.module.js
+ * wwwroot/custom-events.js
  * Generated with https://github.com/coryrylan/custom-element-types
- * 
+ */
+
+ const customEvents = {
+  closeChange: true, // cds-dropdown, cds-modal, cds-internal-overlay, cds-internal-popup,
+  expandedChange: true, // cds-navigation-group, cds-navigation, cds-tree-item,
+  selectedChange: true, // 
+};
+
+/**
  * Workaround: Blazor ignores the event target and only listens to global events
  * this is a problem for most custom elements which dispatch CustomEvent types
  * that default to not bubbling.
  */
- CustomEvent = class Bubbled extends CustomEvent {
+CustomEvent = class Bubbled extends CustomEvent {
   constructor(event, config) {
-    super(event, { ...config, bubbles: true });
+    const bubbles = customEvents[event] !== undefined ? customEvents[event] : config.bubbles;
+    super(event, { ...config, bubbles });
   }
 }
-  
-// cds-dropdown: Notify user when close event has occurred
-// cds-modal: notify when the user has clicked the close button
-// cds-internal-overlay: Notify user when close event has occurred
-// cds-internal-popup: Notify user when close event has occurred
-Blazor.registerCustomEventType('closeChange', {
-  browserEventName: 'closeChange',
-  createEventArgs: event => {
-    return { detail: event.detail };
-  }
-});
 
-// cds-navigation-group: notify when the user has clicked the navigation expand/collapse button
-// cds-navigation: notify when the user has clicked the navigation expand/collapse button
-// cds-tree-item: notify when the user has clicked the expand / collapse button
-Blazor.registerCustomEventType('expandedChange', {
-  browserEventName: 'expandedChange',
-  createEventArgs: event => {
-    return { detail: event.detail };
-  }
-});
-
-
-Blazor.registerCustomEventType('selectedChange', {
-  browserEventName: 'selectedChange',
-  createEventArgs: event => {
-    return { detail: event.detail };
-  }
+Object.keys(customEvents).map(event => {
+  Blazor.registerCustomEventType(event, {
+    browserEventName: event,
+    createEventArgs: event => {
+      return { detail: event.detail };
+    }
+  });
 });
